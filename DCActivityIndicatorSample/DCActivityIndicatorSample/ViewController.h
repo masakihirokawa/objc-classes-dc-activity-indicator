@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "DCActivityIndicator.h"
 
 @interface ViewController : UIViewController
 

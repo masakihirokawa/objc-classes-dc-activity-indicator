@@ -91,6 +91,7 @@
 				600A200417815391003476D2 /* AppDelegate.m */,
 				600A200C17815392003476D2 /* MainStoryboard.storyboard */,
 				600A200F17815392003476D2 /* ViewController.h */,
+				600A201017815392003476D2 /* ViewController.m */,
 				600A1FFB17815391003476D2 /* Supporting Files */,
 			);
 			path = DCActivityIndicatorSample;
@@ -99,7 +100,6 @@
 		600A1FFB17815391003476D2 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				600A201017815392003476D2 /* ViewController.m */,
 				600A1FFC17815391003476D2 /* DCActivityIndicatorSample-Info.plist */,
 				600A1FFD17815391003476D2 /* InfoPlist.strings */,
 				600A200017815391003476D2 /* main.m */,
@@ -312,6 +312,7 @@
 				600A201617815392003476D2 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

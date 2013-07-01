@@ -12,71 +12,63 @@
 
 static UIActivityIndicatorView *indicator;
 
-- (id)initWithFrame:(CGRect)frame
+/*
+typedef enum styles : NSInteger {
+    WHITE       = UIActivityIndicatorViewStyleWhite,
+    GRAY        = UIActivityIndicatorViewStyleGray,
+    WHITE_LARGE = UIActivityIndicatorViewStyleWhiteLarge
+} styles;
+*/
+
+//アニメーション開始
++ (void)start:(id)view center:(CGPoint)center styleId:(NSInteger)styleId hidesWhenStopped:(BOOL)hidesWhenStopped
 {
-    self = [super initWithFrame:frame];
-    if (self) {
-        // Initialization code
-    }
-    return self;
-}
-
-
-/**
- 
- プロパティ名/型	読専	説明
- hidesWhenStopped
- （BOOL）		 アニメーションが止まっている時の表示の設定
- 　YES：インジケータを非表示にする（デフォルト）
- 　NO：インジケータを表示したままにする
- 
- activityIndicatorViewStyle
- （UIActivityIndicatorViewStyle）		 スタイルを設定する
- 　UIActivityIndicatorViewStyleWhite：標準サイズ（白）
- 　UIActivityIndicatorViewStyleGray：標準サイズ（灰色）
- 　UIActivityIndicatorViewStyleWhiteLarge：大サイズ（白）
- */
-
-
-+ (void)start:(id)delegate
-{
-    //UIActivityIndicator初期化
-    DCActivityIndicator.indicator = [[UIActivityIndicatorView alloc] initWithFrame:CGRectMake(0, 0, 50, 50)];
+    //インジケーター初期化
+    DCActivityIndicator.indicator = [[UIActivityIndicatorView alloc] init];
     
-    //色をグレーに指定
-    DCActivityIndicator.indicator.activityIndicatorViewStyle = UIActivityIndicatorViewStyleGray;
+    //スタイルを設定
+    DCActivityIndicator.indicator.activityIndicatorViewStyle = UIActivityIndicatorViewStyleWhiteLarge;
     
-    //座標を指定
-    DCActivityIndicator.indicator.center = delegate.view.center;
-    
-    //停止した時に隠れるよう設定
-    DCActivityIndicator.indicator.hidesWhenStopped = YES;
-    
-    //画面に追加
-    [delegate.view addSubview:_indicator];
-    
-    if (UIActivityIndicatorViewStyleWhiteLarge == DCActivityIndicator.indicator.activityIndicatorViewStyle) {
+    //スタイルに応じて寸法変更
+    if (DCActivityIndicator.indicator.activityIndicatorViewStyle == UIActivityIndicatorViewStyleWhiteLarge) {
         DCActivityIndicator.indicator.frame = CGRectMake(0, 0, INDICATOR_LARGE_SIZE, INDICATOR_LARGE_SIZE);
     } else {
         DCActivityIndicator.indicator.frame = CGRectMake(0, 0, INDICATOR_SMALL_SIZE, INDICATOR_SMALL_SIZE);
     }
     
+    //座標をセンターに指定
+    DCActivityIndicator.indicator.center = center;
+    
+    //停止した時に隠れるよう設定
+    DCActivityIndicator.indicator.hidesWhenStopped = hidesWhenStopped;
+    
+    //インジケーターアニメーション開始
     [DCActivityIndicator.indicator startAnimating];
+    
+    //画面に追加
+    [view addSubview:DCActivityIndicator.indicator];
 }
 
+//アニメーション停止
 + (void)stop
 {
     [DCActivityIndicator.indicator stopAnimating];
 }
 
+//アニメーション中であるか
 + (BOOL)isAnimating
 {
     return [DCActivityIndicator.indicator isAnimating];
 }
 
++ (void)setIndicator:(UIActivityIndicatorView *)indicator
+{
+    DCActivityIndicator.indicator = indicator;
+}
+
 + (UIActivityIndicatorView *)indicator
 {
-    return indicator;
+    return DCActivityIndicator.indicator;
 }
 
 @end

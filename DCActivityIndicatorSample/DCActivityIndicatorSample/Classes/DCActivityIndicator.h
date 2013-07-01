@@ -13,10 +13,8 @@
 
 @interface DCActivityIndicator : UIActivityIndicatorView
 
-/*
-@property UIActivityIndicatorView *indicator;
-@property CGFloat indicatorWidth;
-@property CGFloat indicatorHeight;
- */
++ (void)start:(id)view center:(CGPoint)center styleId:(NSInteger)styleId hidesWhenStopped:(BOOL)hidesWhenStopped;
++ (void)stop;
++ (BOOL)isAnimating;
 
 @end
