@@ -10,15 +10,13 @@
 
 @implementation DCActivityIndicator
 
-static UIActivityIndicatorView *indicator;
+static UIActivityIndicatorView *indicator_;
 
-/*
 typedef enum styles : NSInteger {
-    WHITE       = UIActivityIndicatorViewStyleWhite,
-    GRAY        = UIActivityIndicatorViewStyleGray,
-    WHITE_LARGE = UIActivityIndicatorViewStyleWhiteLarge
+    GRAY        = 1,
+    WHITE       = 2,
+    WHITE_LARGE = 3
 } styles;
-*/
 
 //アニメーション開始
 + (void)start:(id)view center:(CGPoint)center styleId:(NSInteger)styleId hidesWhenStopped:(BOOL)hidesWhenStopped
@@ -27,7 +25,17 @@ typedef enum styles : NSInteger {
     DCActivityIndicator.indicator = [[UIActivityIndicatorView alloc] init];
     
     //スタイルを設定
-    DCActivityIndicator.indicator.activityIndicatorViewStyle = UIActivityIndicatorViewStyleWhiteLarge;
+    switch (styleId) {
+        case GRAY:
+            DCActivityIndicator.indicator.activityIndicatorViewStyle = UIActivityIndicatorViewStyleGray;
+            break;
+        case WHITE:
+            DCActivityIndicator.indicator.activityIndicatorViewStyle = UIActivityIndicatorViewStyleWhite;
+            break;
+        case WHITE_LARGE:
+            DCActivityIndicator.indicator.activityIndicatorViewStyle = UIActivityIndicatorViewStyleWhiteLarge;
+            break;
+    }
     
     //スタイルに応じて寸法変更
     if (DCActivityIndicator.indicator.activityIndicatorViewStyle == UIActivityIndicatorViewStyleWhiteLarge) {
@@ -63,12 +71,12 @@ typedef enum styles : NSInteger {
 
 + (void)setIndicator:(UIActivityIndicatorView *)indicator
 {
-    DCActivityIndicator.indicator = indicator;
+    indicator_ = indicator;
 }
 
 + (UIActivityIndicatorView *)indicator
 {
-    return DCActivityIndicator.indicator;
+    return indicator_;
 }
 
 @end

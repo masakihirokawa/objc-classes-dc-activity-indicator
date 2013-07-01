@@ -11,4 +11,7 @@
 
 @interface ViewController : UIViewController
 
+- (IBAction)startEvent:(id)sender;
+- (IBAction)stopEvent:(id)sender;
+
 @end
